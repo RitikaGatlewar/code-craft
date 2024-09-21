@@ -1,0 +1,42 @@
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()
+        return None
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    def reverse_stack(self):
+        if not self.is_empty():
+            top = self.pop()
+            self.reverse_stack()
+            self.insert_at_bottom(top)
+
+    def insert_at_bottom(self, item):
+        if self.is_empty():
+            self.push(item)
+        else:
+            top = self.pop()
+            self.insert_at_bottom(item)
+            self.push(top)
+
+    def print_stack(self):
+        print(self.stack)
+
+# Example usage:
+s = Stack()
+s.push(10)
+s.push(20)
+s.push(30)
+s.push(40)
+s.push(50)
+s.reverse_stack()
+s.print_stack()  # Expected output: [50, 40, 30, 20, 10]
+
